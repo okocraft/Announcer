@@ -18,7 +18,7 @@ description: @project.description@
 website: @project.url@
 
 #
-# Command
+# CommandDispatcher
 #
 commands:
   announcer:

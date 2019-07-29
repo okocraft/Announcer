@@ -4,15 +4,14 @@ import org.bukkit.Bukkit
 
 class AnnounceTask(private val config: Config): Runnable {
     override fun run() {
+        val prefix = config.prefix
         val messages = config.messages
-        val pending = messages.pop()
-
-        val messageList = pending.split("\n")
+        val message = messages.pop()
 
         Bukkit.getOnlinePlayers().forEach { player ->
-            messageList.forEach { message -> player.sendMessage(config.prefix + message) }
+            message.split("\n").forEach { m -> player.sendMessage(prefix + m) }
         }
 
-        messages.addLast(pending)
+        messages.addLast(message)
     }
 }
