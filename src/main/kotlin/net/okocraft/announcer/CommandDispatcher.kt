@@ -22,11 +22,12 @@ import org.bukkit.ChatColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.command.TabCompleter
 
 /**
  * @author AKANE AKAGI (akaregi)
  */
-class CommandDispatcher(private val plugin: Announcer) : CommandExecutor {
+class CommandDispatcher(private val plugin: Announcer) : CommandExecutor, TabCompleter {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         val config = plugin.configuration
 
@@ -51,5 +52,31 @@ class CommandDispatcher(private val plugin: Announcer) : CommandExecutor {
         }
 
         return true
+    }
+
+    override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
+        if (command.name != "announcer") {
+            return emptyList<String>() as MutableList<String>
+        }
+
+        if (args.size != 1) {
+            return emptyList<String>() as MutableList<String>
+        }
+
+        if (args.isEmpty()) {
+            return mutableListOf("list", "reload")
+        }
+
+        if (args.size == 1) {
+            if ("list".startsWith(args[0])) {
+                return mutableListOf("list")
+            }
+
+            if ("reload".startsWith(args[0])) {
+                return mutableListOf("reload")
+            }
+        }
+
+        return emptyList<String>() as MutableList<String>
     }
 }
