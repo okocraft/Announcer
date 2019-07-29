@@ -3,19 +3,26 @@ package net.okocraft.announcer
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
+import org.bukkit.scheduler.BukkitScheduler
 
 class Announcer: JavaPlugin() {
-    private val config: Config = Config(this)
+    private val config: Config
+    private val scheduler: BukkitScheduler
 
-    override fun onEnable() {
+    init {
         saveDefaultConfig()
 
+        config = Config(this)
+        scheduler = server.scheduler
+    }
+
+    override fun onEnable() {
         runAnnounceTask()
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         if (args.first() == "reload") {
-            server.scheduler.cancelTasks(this)
+            scheduler.cancelTasks(this)
 
             config.reload()
             runAnnounceTask()
@@ -24,9 +31,6 @@ class Announcer: JavaPlugin() {
         return true
     }
 
-    private fun runAnnounceTask() {
-        server.scheduler.runTaskTimerAsynchronously(
-            this, AnnounceTask(config.messages, logger), 0L, config.period
-        )
-    }
+    private fun runAnnounceTask() =
+        scheduler.runTaskTimerAsynchronously(this, AnnounceTask(config.messages), 0L, config.period)
 }

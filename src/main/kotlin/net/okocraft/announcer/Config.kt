@@ -14,6 +14,8 @@ class Config(private val plugin: Announcer) {
     }
 
     fun reload() {
+        plugin.reloadConfig()
+
         val config = plugin.config
 
         messages = LinkedList(config.getStringList("messages"))
