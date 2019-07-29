@@ -22,7 +22,6 @@ website: @project.url@
 #
 commands:
   announcer:
-    aliases: "anon"
     description: A command to use Announcer.
     usage: /<command> help
     permission: announcer.admin
