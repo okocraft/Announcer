@@ -1,0 +1,11 @@
+#
+# Announcer configuration
+#
+
+general:
+  period: 20
+
+messages:
+  - "This is first"
+  - "This is second"
+  - "This is third"

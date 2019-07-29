@@ -1,0 +1,37 @@
+#
+# Required configuration
+#
+main: net.okocraft.announcer.Announcer
+name: @project.name@
+version: @project.version@
+
+#
+# Recommended configuration
+#
+api-version: "1.14"
+
+#
+# Optional configuration
+#
+author: akaregi
+description: @project.description@
+website: @project.url@
+
+#
+# Command
+#
+commands:
+  announcer:
+    aliases: "anon"
+    description: A command to use Announcer.
+    usage: /<command> help
+    permission: announcer.admin
+    permission-message: '§cYou do not have permission <permission>'
+
+#
+# Permission
+#
+permissions:
+  announcer.admin:
+    description: A permission to manage Announcer.
+    default: op
