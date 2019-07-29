@@ -11,6 +11,9 @@ general:
   # Unit: Second
   period: 1
 
+#
+# Message can divide into several lines by \n
+#
 messages:
   - "&aThis is first\n&aAnd then there's a secondary text. "
   - "&bThis is second"
