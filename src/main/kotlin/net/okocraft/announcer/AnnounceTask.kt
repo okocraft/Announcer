@@ -5,10 +5,14 @@ import org.bukkit.Bukkit
 class AnnounceTask(private val config: Config): Runnable {
     override fun run() {
         val messages = config.messages
-        val message = messages.pop()
+        val pending = messages.pop()
 
-        Bukkit.getOnlinePlayers().forEach { it.sendMessage(config.prefix + message) }
+        val messageList = pending.split("\n")
 
-        messages.addLast(message)
+        Bukkit.getOnlinePlayers().forEach { player ->
+            messageList.forEach { message -> player.sendMessage(config.prefix + message) }
+        }
+
+        messages.addLast(pending)
     }
 }

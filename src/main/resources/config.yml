@@ -9,9 +9,9 @@
 general:
   prefix: "Akikawa_: "
   # Unit: Second
-  period: 600
+  period: 1
 
 messages:
-  - "&aThis is first"
+  - "&aThis is first\n&aAnd then there's a secondary text. "
   - "&bThis is second"
   - "&cThis is third"
