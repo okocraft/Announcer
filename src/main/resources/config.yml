@@ -1,11 +1,17 @@
 #
 # Announcer configuration
+# Author: AKANE AKAGI (akaregi)
+# License: GPLv3
+#
+# Prefix and Messages support color code.
 #
 
 general:
-  period: 20
+  prefix: "Akikawa_: "
+  # Unit: Second
+  period: 600
 
 messages:
-  - "This is first"
-  - "This is second"
-  - "This is third"
+  - "&aThis is first"
+  - "&bThis is second"
+  - "&cThis is third"

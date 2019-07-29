@@ -32,5 +32,5 @@ class Announcer: JavaPlugin() {
     }
 
     private fun runAnnounceTask() =
-        scheduler.runTaskTimerAsynchronously(this, AnnounceTask(config.messages), 0L, config.period)
+        scheduler.runTaskTimerAsynchronously(this, AnnounceTask(config), 0L, config.period)
 }
