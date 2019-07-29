@@ -43,7 +43,7 @@ class CommandDispatcher(private val plugin: Announcer) : CommandExecutor {
             sender.sendMessage("")
 
             config.messages.forEachIndexed  { index, message ->
-                sender.sendMessage("${ChatColor.GRAY}$index:")
+                sender.sendMessage("${ChatColor.GRAY}${index + 1}:")
                 message.split("\n").forEach { sender.sendMessage(prefix + it) }
 
                 sender.sendMessage("")

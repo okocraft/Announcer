@@ -50,9 +50,12 @@ class Config(private val plugin: Announcer) {
 
         val config = plugin.config
 
-        messages = LinkedList(config.getStringList("messages"))
-        period   = config.getLong("general.period")
-        prefix   = Optional.ofNullable(config.getString("general.prefix")).orElse("")
+        messages = LinkedList(config.getStringList("messages").map { translateColor(it) })
+        period = config.getLong("general.period") * 20
+
+        prefix = translateColor(
+            Optional.ofNullable(config.getString("general.prefix")).orElse("")
+        )
     }
 
     private fun translateColor(message: String) = ChatColor.translateAlternateColorCodes('&', message)
