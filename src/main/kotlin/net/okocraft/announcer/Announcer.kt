@@ -1,8 +1,9 @@
 package net.okocraft.announcer
 
+import java.util.Optional
+
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitScheduler
-import java.util.*
 
 class Announcer: JavaPlugin() {
     val configuration: Config
