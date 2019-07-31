@@ -35,11 +35,11 @@ class TabCompleterImpl: TabCompleter {
             return mutableListOf()
         }
 
-        if (args.isEmpty()) {
-            return mutableListOf("list", "reload")
-        }
-
         if (args.size == 1) {
+            if (args[0] == "") {
+                return mutableListOf("list", "reload")
+            }
+
             if ("list".startsWith(args[0])) {
                 return mutableListOf("list")
             }
