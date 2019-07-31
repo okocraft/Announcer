@@ -16,44 +16,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package net.okocraft.announcer
+package net.okocraft.announcer.command
 
-import org.bukkit.ChatColor
 import org.bukkit.command.Command
-import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 
 /**
  * @author AKANE AKAGI (akaregi)
  */
-class CommandDispatcher(private val plugin: Announcer) : CommandExecutor, TabCompleter {
-    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        val config = plugin.configuration
-
-        if (args.first() == "reload") {
-            plugin.scheduler.cancelTasks(plugin)
-
-            config.reload()
-            plugin.runAnnounceTask()
-        }
-
-        if (args.first() == "list") {
-            val prefix = config.prefix
-
-            sender.sendMessage("")
-
-            config.messages.forEachIndexed  { index, message ->
-                sender.sendMessage("${ChatColor.GRAY}${index + 1}:")
-                message.split("\n").forEach { sender.sendMessage(prefix + it) }
-
-                sender.sendMessage("")
-            }
-        }
-
-        return true
-    }
-
+class TabCompleterImpl: TabCompleter {
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
         if (command.name != "announcer") {
             return mutableListOf()

@@ -23,6 +23,9 @@ import java.util.Optional
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitScheduler
 
+import net.okocraft.announcer.command.CommandDispatcher
+import net.okocraft.announcer.command.TabCompleterImpl
+
 /**
  * @author AKANE AKAGI (akaregi)
  */
@@ -42,6 +45,7 @@ class Announcer: JavaPlugin() {
 
         Optional.ofNullable(getCommand("announcer")).ifPresent {
             it.setExecutor(CommandDispatcher(this))
+            it.tabCompleter = TabCompleterImpl()
         }
     }
 
