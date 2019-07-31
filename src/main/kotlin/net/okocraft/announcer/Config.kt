@@ -19,7 +19,7 @@
 package net.okocraft.announcer
 
 import java.util.LinkedList
-import java.util.Optional
+import kotlin.properties.Delegates
 
 import org.bukkit.ChatColor
 
@@ -27,22 +27,15 @@ import org.bukkit.ChatColor
  * @author AKANE AKAGI (akaregi)
  */
 class Config(private val plugin: Announcer) {
-    var messages: LinkedList<String>
+    lateinit var messages: LinkedList<String>
         private set
-    var period: Long
+    var period: Long by Delegates.notNull()
         private set
-    var prefix: String
+    lateinit var prefix: String
         private set
 
     init {
-        val config = plugin.config
-
-        messages = LinkedList(config.getStringList("messages").map { translateColor(it) })
-        period = config.getLong("general.period") * 20
-
-        prefix = translateColor(
-            Optional.ofNullable(config.getString("general.prefix")).orElse("")
-        )
+        reload()
     }
 
     fun reload() {
@@ -52,10 +45,7 @@ class Config(private val plugin: Announcer) {
 
         messages = LinkedList(config.getStringList("messages").map { translateColor(it) })
         period = config.getLong("general.period") * 20
-
-        prefix = translateColor(
-            Optional.ofNullable(config.getString("general.prefix")).orElse("")
-        )
+        prefix = translateColor(config.getString("general.prefix") ?: "")
     }
 
     private fun translateColor(message: String) = ChatColor.translateAlternateColorCodes('&', message)
