@@ -18,8 +18,6 @@
 
 package net.okocraft.announcer
 
-import java.util.Optional
-
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitScheduler
 
@@ -43,7 +41,7 @@ class Announcer: JavaPlugin() {
     override fun onEnable() {
         runAnnounceTask()
 
-        Optional.ofNullable(getCommand("announcer")).ifPresent {
+        getCommand("announcer")?.let {
             it.setExecutor(CommandDispatcher(this))
             it.tabCompleter = TabCompleterImpl()
         }
