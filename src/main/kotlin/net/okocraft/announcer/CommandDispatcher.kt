@@ -56,11 +56,11 @@ class CommandDispatcher(private val plugin: Announcer) : CommandExecutor, TabCom
 
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
         if (command.name != "announcer") {
-            return emptyList<String>() as MutableList<String>
+            return mutableListOf()
         }
 
         if (args.size != 1) {
-            return emptyList<String>() as MutableList<String>
+            return mutableListOf()
         }
 
         if (args.isEmpty()) {
@@ -77,6 +77,6 @@ class CommandDispatcher(private val plugin: Announcer) : CommandExecutor, TabCom
             }
         }
 
-        return emptyList<String>() as MutableList<String>
+        return mutableListOf()
     }
 }
