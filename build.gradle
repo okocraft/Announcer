@@ -11,7 +11,7 @@ configurations {
 }
 
 group 'net.okocraft.announcer'
-version '1.0-SNAPSHOT'
+version '1.0.1-SNAPSHOT'
 
 ext.pluginName  = "Announcer"
 ext.desc   = "Announcer. A tool to broadcast messages."
